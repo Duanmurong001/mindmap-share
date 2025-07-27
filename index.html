@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李笑来新财富思维导图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #2d3436;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mindmap {
+            padding: 40px;
+        }
+
+        .node {
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .node-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.3em;
+            transition: all 0.3s ease;
+        }
+
+        .node-header:hover {
+            transform: scale(1.02);
+        }
+
+        .node-content {
+            padding: 0 20px 20px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .node-content.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.2em;
+        }
+
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .wealth {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            color: #2d3436;
+        }
+
+        .business {
+            background: linear-gradient(135deg, #a8e6cf, #7fcdcd);
+            color: #2d3436;
+        }
+
+        .growth {
+            background: linear-gradient(135deg, #ffd3a5, #fd9853);
+            color: #2d3436;
+        }
+
+        .attention {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .attention .node-header {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .metacognition {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+        }
+
+        .metacognition .node-header {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .investment {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+        }
+
+        .investment .node-header {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .cognition {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: #2d3436;
+        }
+
+        .system {
+            background: linear-gradient(135deg, #fa709a, #fee140);
+            color: #2d3436;
+        }
+
+        .action {
+            background: linear-gradient(135deg, #30cfd0, #91a7ff);
+            color: white;
+        }
+
+        .action .node-header {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .mistakes {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            color: #2d3436;
+        }
+
+        .success {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #2d3436;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+        }
+
+        .summary .node-header {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .sub-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            color: #2d3436;
+        }
+
+        .sub-item h4 {
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .sub-item ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .sub-item li {
+            margin: 8px 0;
+            padding: 5px 0;
+            position: relative;
+            color: #2d3436;
+            font-weight: 500;
+        }
+
+        .sub-item li::before {
+            content: '▸';
+            position: absolute;
+            left: -15px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .highlight-box h3 {
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .highlight-box p {
+            color: white;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .action-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease;
+            color: #2d3436;
+        }
+
+        .step h4 {
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .step ul {
+            color: #2d3436;
+        }
+
+        .step li {
+            color: #2d3436;
+            font-weight: 500;
+        }
+
+        .step:hover {
+            transform: translateY(-3px);
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .mindmap {
+                padding: 20px;
+            }
+            
+            .action-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 李笑来新财富思维导图</h1>
+            <p>构建属于你的财富操作系统</p>
+        </div>
+
+        <div class="mindmap">
+            <!-- 财富自由的本质 -->
+            <div class="node wealth">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>💰 财富自由的本质</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <div class="sub-item">
+                        <h4><span class="emoji">🔄</span>定义重新认知</h4>
+                        <ul>
+                            <li>❌ 错误理解：有很多钱可以随便花</li>
+                            <li>✅ 正确定义：不再需要为了满足生活而出售自己的时间</li>
+                            <li>🎯 目标：被动收入覆盖生活开支</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 三种个人商业模式 -->
+            <div class="node business">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>🏢 三种个人商业模式</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <div class="sub-item">
+                        <h4><span class="emoji">1️⃣</span>一份时间出售一次</h4>
+                        <ul>
+                            <li>📝 定义：打工模式</li>
+                            <li>💡 特点：工作8小时，赚8小时的钱</li>
+                            <li>📊 效率：最低效的赚钱方式</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">2️⃣</span>一份时间出售多次</h4>
+                        <ul>
+                            <li>📝 定义：内容创作模式</li>
+                            <li>💡 例子：写书、做课程、创作内容</li>
+                            <li>📊 优势：一次创作，无限次销售</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">3️⃣</span>购买他人时间再出售</h4>
+                        <ul>
+                            <li>📝 定义：创业和投资模式</li>
+                            <li>💡 特点：雇佣别人时间，创造更大价值</li>
+                            <li>📊 级别：最高级的商业模式</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 成长曲线理论 -->
+            <div class="node growth">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>📈 成长曲线理论</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <div class="sub-item">
+                        <h4><span class="emoji">🔍</span>成长的秘密</h4>
+                        <ul>
+                            <li>🔄 成长是有曲线的</li>
+                            <li>⏳ 初期阶段：看不到希望的积累期</li>
+                            <li>💥 拐点突破：进入复利阶段</li>
+                            <li>🚀 指数增长：突然成功的真相</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">💡</span>重要认知</h4>
+                        <ul>
+                            <li>🎯 财富自由不是终点，而是里程碑</li>
+                            <li>📚 关注成长，不是成功</li>
+                            <li>♾️ 成长是永恒的刚需</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 注意力管理 -->
+            <div class="node attention">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>🧠 注意力管理（核心理念）</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <div class="sub-item">
+                        <h4><span class="emoji">🥇</span>重要性排序</h4>
+                        <ul>
+                            <li>🥇 注意力 > 时间 > 金钱</li>
+                            <li>⏰ 每天真正集中注意力：2-3小时</li>
+                            <li>🎯 这2-3小时决定人生轨迹</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">⚠️</span>三大注意力陷阱</h4>
+                        <ul>
+                            <li>🎪 陷阱一：莫名其妙地凑热闹</li>
+                            <li>🌊 陷阱二：心急火燎地随大流</li>
+                            <li>💔 陷阱三：操碎了别人的心</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">🎯</span>正确投放方向</h4>
+                        <ul>
+                            <li>🌱 自己的成长</li>
+                            <li>❤️ 真爱身上</li>
+                            <li>🌍 对社会有贡献的事情</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">🛠️</span>实用管理技巧</h4>
+                        <ul>
+                            <li>📱 手机永远静音</li>
+                            <li>💰 付费买时间</li>
+                            <li>📊 记录注意力开销</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 元认知能力 -->
+            <div class="node metacognition">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>🧩 元认知能力</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <div class="sub-item">
+                        <h4><span class="emoji">🔍</span>定义</h4>
+                        <ul>
+                            <li>🔍 认知自己认知的能力</li>
+                            <li>🤔 知道自己在想什么</li>
+                            <li>⚙️ 操作系统的核心能力</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">💪</span>强元认知能力特点</h4>
+                        <ul>
+                            <li>👁️ 客观审视思考过程</li>
+                            <li>🔧 及时发现并纠正错误思维</li>
+                            <li>🔄 不断升级操作系统</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">🌱</span>培养方法</h4>
+                        <ul>
+                            <li>🤔 定期反思决策和行为</li>
+                            <li>❓ 问自己"为什么这么想"</li>
+                            <li>📢 寻求反馈，接受不同观点</li>
+                            <li>🔓 保持开放和好奇心态</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投资思维 -->
+            <div class="node investment">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>💼 投资思维</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <div class="sub-item">
+                        <h4><span class="emoji">🎯</span>投资本质</h4>
+                        <ul>
+                            <li>🧠 用认知差异赚钱</li>
+                            <li>🛡️ 关注如何避险，不是冒险</li>
+                            <li>💪 基于实力，不是运气</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">⚠️</span>第一铁律</h4>
+                        <ul>
+                            <li>⚠️ 永远不要压上全部</li>
+                            <li>📊 60%胜率 → 最大下注20%</li>
+                            <li>🚫 最大风险：从此再无机会</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">📋</span>投资原则</h4>
+                        <ul>
+                            <li>🌱 寻找成长型公司</li>
+                            <li>📅 定投策略</li>
+                            <li>⏳ 长期持有</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 认知差异与复利 -->
+            <div class="node cognition">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>🔄 认知差异与复利</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <div class="sub-item">
+                        <h4><span class="emoji">💡</span>认知差异</h4>
+                        <ul>
+                            <li>💡 能变现的不是知识，是认知差异</li>
+                            <li>🔍 比别人更早、更深刻理解</li>
+                            <li>💰 认知差异才是赚钱机会</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">🔄</span>复利应用</h4>
+                        <ul>
+                            <li>🎯 技能复利：每天进步1% = 一年37倍提升</li>
+                            <li>🤝 关系复利：维护高质量人际关系</li>
+                            <li>💪 健康复利：每天锻炼一点点</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 个人操作系统 -->
+            <div class="node system">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>⚙️ 个人操作系统</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <div class="sub-item">
+                        <h4><span class="emoji">💎</span>价值观系统</h4>
+                        <ul>
+                            <li>❓ 什么对你最重要？</li>
+                            <li>🎯 人生目标是什么？</li>
+                            <li>💰 愿意为什么付出代价？</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">🧠</span>方法论系统</h4>
+                        <ul>
+                            <li>📚 如何学习新知识？</li>
+                            <li>🤔 如何做决策？</li>
+                            <li>⏰ 如何管理时间和注意力？</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">🚀</span>实践系统</h4>
+                        <ul>
+                            <li>🚀 如何将想法转化为行动？</li>
+                            <li>🔄 如何持续改进？</li>
+                            <li>💪 如何应对挫折和失败？</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 行动指南 -->
+            <div class="node action">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>📋 行动指南</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <h4><span class="emoji">🎯</span>五步行动法</h4>
+                    <div class="action-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>🔍 审视现状</h4>
+                            <ul>
+                                <li>记录时间花费</li>
+                                <li>分析注意力分配</li>
+                                <li>评估财务状况</li>
+                            </ul>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>🎯 设定目标</h4>
+                            <ul>
+                                <li>明确财富自由状态</li>
+                                <li>设定可量化目标</li>
+                                <li>制定时间表</li>
+                            </ul>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>🏢 选择商业模式</h4>
+                            <ul>
+                                <li>评估当前模式</li>
+                                <li>思考升级路径</li>
+                                <li>开始行动实践</li>
+                            </ul>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>📚 持续学习</h4>
+                            <ul>
+                                <li>投资自己大脑</li>
+                                <li>学习投资理财</li>
+                                <li>培养元认知能力</li>
+                            </ul>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>💼 开始投资</h4>
+                            <ul>
+                                <li>从小额开始</li>
+                                <li>选择成长型标的</li>
+                                <li>坚持定投策略</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 常见误区 -->
+            <div class="node mistakes">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>⚠️ 常见误区</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <div class="sub-item">
+                        <h4><span class="emoji">⏰</span>误区一：急于求成</h4>
+                        <ul>
+                            <li>财富积累需要时间</li>
+                            <li>不被短期诱惑迷惑</li>
+                            <li>保持耐心和定力</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">🌊</span>误区二：盲目跟风</h4>
+                        <ul>
+                            <li>不追逐热点</li>
+                            <li>建立判断标准</li>
+                            <li>坚持长期主义</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">🎯</span>误区三：完美主义</h4>
+                        <ul>
+                            <li>开始比完美重要</li>
+                            <li>在行动中学习改进</li>
+                            <li>接受失败和挫折</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 成功者特点 -->
+            <div class="node success">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>🏆 成功者特点</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <div class="sub-item">
+                        <h4><span class="emoji">⏳</span>长期思维</h4>
+                        <ul>
+                            <li>5年、10年规划</li>
+                            <li>不被短期波动影响</li>
+                            <li>坚持做正确的事</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">📚</span>持续学习</h4>
+                        <ul>
+                            <li>不断提升认知</li>
+                            <li>保持开放心态</li>
+                            <li>从失败中学习</li>
+                        </ul>
+                    </div>
+                    <div class="sub-item">
+                        <h4><span class="emoji">🚀</span>行动力强</h4>
+                        <ul>
+                            <li>想到就去做</li>
+                            <li>不完美也要开始</li>
+                            <li>在实践中完善</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 核心要点总结 -->
+            <div class="node summary">
+                <div class="node-header" onclick="toggleNode(this)">
+                    <span>🎯 核心要点总结</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="node-content">
+                    <div class="highlight-box">
+                        <h3>💡 四大核心要点</h3>
+                        <div style="text-align: left; margin-top: 20px;">
+                            <p><strong>1. 财富自由本质</strong>：不再出售时间换生活费</p>
+                            <p><strong>2. 注意力管理</strong>：注意力是最宝贵的财富</p>
+                            <p><strong>3. 投资思维</strong>：用认知差异赚钱，永远不压全部</p>
+                            <p><strong>4. 行动指南</strong>：建立操作系统，持续成长</p>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <h3>🚀 立即开始行动</h3>
+                        <div style="text-align: left; margin-top: 20px;">
+                            <p>• 记录时间和注意力分配</p>
+                            <p>• 设定财富自由目标</p>
+                            <p>• 开始学习投资（哪怕每月100元）</p>
+                            <p>• 持续成长，走向财富自由！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleNode(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.classList.remove('rotated');
+                icon.textContent = '▼';
+            } else {
+                content.classList.add('active');
+                icon.classList.add('rotated');
+                icon.textContent = '▲';
+            }
+        }
+
+        // 页面加载时展开第一个节点
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstNode = document.querySelector('.node-header');
+            if (firstNode) {
+                toggleNode(firstNode);
+            }
+        });
+
+        // 添加键盘快捷键支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // ESC键收起所有节点
+                const activeContents = document.querySelectorAll('.node-content.active');
+                activeContents.forEach(content => {
+                    const header = content.previousElementSibling;
+                    toggleNode(header);
+                });
+            }
+        });
+
+        // 添加平滑滚动
+        document.querySelectorAll('.node-header').forEach(header => {
+            header.addEventListener('click', function() {
+                setTimeout(() => {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
