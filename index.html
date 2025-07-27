@@ -60,6 +60,54 @@
             z-index: 1;
         }
 
+        .control-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .control-buttons {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .control-btn {
+                padding: 10px 12px;
+                font-size: 12px;
+                min-width: 80px;
+            }
+        }
+
         .mindmap {
             padding: 40px;
         }
@@ -337,6 +385,13 @@
     </style>
 </head>
 <body>
+    <!-- 控制按钮 -->
+    <div class="control-buttons">
+        <button class="control-btn" onclick="expandAll()">📖 展开全部</button>
+        <button class="control-btn" onclick="collapseAll()">📕 收起全部</button>
+        <button class="control-btn" onclick="scrollToTop()">⬆️ 回到顶部</button>
+    </div>
+
     <div class="container">
         <div class="header">
             <h1>🎯 李笑来新财富思维导图</h1>
@@ -764,6 +819,44 @@
                 icon.classList.add('rotated');
                 icon.textContent = '▲';
             }
+        }
+
+        // 展开全部节点
+        function expandAll() {
+            const allContents = document.querySelectorAll('.node-content');
+            const allIcons = document.querySelectorAll('.toggle-icon');
+            
+            allContents.forEach(content => {
+                content.classList.add('active');
+            });
+            
+            allIcons.forEach(icon => {
+                icon.classList.add('rotated');
+                icon.textContent = '▲';
+            });
+        }
+
+        // 收起全部节点
+        function collapseAll() {
+            const allContents = document.querySelectorAll('.node-content');
+            const allIcons = document.querySelectorAll('.toggle-icon');
+            
+            allContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            allIcons.forEach(icon => {
+                icon.classList.remove('rotated');
+                icon.textContent = '▼';
+            });
+        }
+
+        // 回到顶部
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
         // 页面加载时展开第一个节点
